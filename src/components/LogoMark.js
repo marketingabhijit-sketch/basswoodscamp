@@ -8,43 +8,50 @@ export default function LogoMark({ className = "w-10 h-10" }) {
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Background soft circle optional */}
-      <circle cx="50" cy="50" r="46" fill="#223A2C" stroke="#F1EAD9" strokeWidth="1.5" strokeOpacity="0.2" />
+      {/* Woodcut Stamp Outer Ring */}
+      <circle cx="50" cy="50" r="46" fill="#14241B" stroke="#DB9E30" strokeWidth="2" strokeDasharray="90 4" />
       
-      {/* Hand-drawn Mountain Silhouette in Mustard Gold */}
+      {/* Sun / Harvest Disc */}
+      <circle cx="68" cy="22" r="7" fill="#DB9E30" />
+      
+      {/* Woodblock Mountain Silhouette in Warm Harvest Gold */}
       <path 
-        d="M18 64L38 32L52 50L68 26L86 64H18Z" 
-        stroke="#E0A83E" 
+        d="M16 64L36 28L52 48L68 22L86 64H16Z" 
+        fill="#DB9E30" 
+        fillOpacity="0.15"
+        stroke="#DB9E30" 
         strokeWidth="3.5" 
         strokeLinecap="round" 
         strokeLinejoin="round" 
       />
       
+      {/* Inner Mountain Lines */}
       <path 
-        d="M38 32L45 42M68 26L74 36" 
-        stroke="#E0A83E" 
+        d="M36 28L44 40M68 22L74 34M52 48L60 64" 
+        stroke="#DB9E30" 
         strokeWidth="2.5" 
         strokeLinecap="round" 
       />
 
-      {/* Underneath River / Soundwave Line in Rust Burnt Orange */}
+      {/* Terracotta River & Soundwave Curves */}
       <path 
-        d="M14 74C22 70 30 78 40 74C50 70 60 78 70 74C80 70 88 76 92 74" 
-        stroke="#C1602D" 
+        d="M12 73C22 68 30 78 40 73C50 68 60 78 70 73C80 68 88 75 92 73" 
+        stroke="#C85A28" 
         strokeWidth="3.5" 
         strokeLinecap="round" 
       />
 
       <path 
-        d="M20 82C28 78 36 84 46 80C56 76 66 84 76 80C82 78 86 80 88 80" 
-        stroke="#C1602D" 
-        strokeWidth="2" 
+        d="M18 82C26 78 34 84 44 80C54 76 64 84 74 80C82 78 86 80 88 80" 
+        stroke="#C85A28" 
+        strokeWidth="2.5" 
         strokeDasharray="4 3" 
         strokeLinecap="round" 
       />
 
-      {/* Sun / Sound Peak Accent */}
-      <circle cx="68" cy="20" r="3" fill="#E0A83E" />
+      {/* Pine Tree Silhouette Marks */}
+      <path d="M22 64L26 56L30 64H22Z" fill="#14241B" stroke="#DB9E30" strokeWidth="1.5" />
+      <path d="M72 64L76 54L80 64H72Z" fill="#14241B" stroke="#DB9E30" strokeWidth="1.5" />
     </svg>
   );
 }
