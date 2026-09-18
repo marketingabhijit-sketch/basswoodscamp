@@ -1,9 +1,22 @@
 import './globals.css';
+import { Fraunces, Inter } from 'next/font/google';
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export const metadata = {
-  title: 'Bass Woods Camp | Northeast India 2026 Festival Campsites & Eco Glamping',
-  description: 'Premier Northeast India travel & festival camping consultants for Ziro Festival of Music, Hornbill Festival, Shillong Cherry Blossom, Orange Fest Dambuk, and Mechuka Adventure. Budget tents ₹500 to Luxury Geodesic Domes ₹2,000+.',
-  keywords: ['Bass Woods', 'Ziro Festival 2026', 'Hornbill Festival 2026', 'Shillong Cherry Blossom', 'Campsites Northeast India', 'Glamping Ziro', 'Camping NAGALAND'],
+  title: 'Bass Woods Camp | Northeast India Festival Camping & Glamping Consultancy',
+  description: 'Boutique travel consultancy for Northeast India music festivals (Ziro, Hornbill, Shillong Cherry Blossom, Orange Fest, Mechuka). Curated campsites, glamping domes, cottages, and eco-transfers.',
+  keywords: ['Bass Woods', 'Ziro Festival 2026', 'Hornbill Festival 2026', 'Shillong Cherry Blossom', 'Northeast India Camping', 'Glamping Ziro'],
   icons: {
     icon: '/icon.png',
   },
@@ -11,11 +24,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className={`${fraunces.variable} ${inter.variable} scroll-smooth`}>
       <head>
         <link rel="icon" href="/icon.png" />
       </head>
-      <body className="bg-[#070a0f] text-gray-100 antialiased selection:bg-[#8cff00] selection:text-black">
+      <body className="bg-[#1B2E22] text-[#F1EAD9] font-sans antialiased selection:bg-[#C1602D] selection:text-[#F1EAD9]">
         {children}
       </body>
     </html>

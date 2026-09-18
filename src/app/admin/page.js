@@ -1,16 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import LogoMark from '@/components/LogoMark';
 import { 
-  Users, Palette, Calculator, Tent, Plus, CheckCircle2, 
-  Clock, ArrowLeft, PhoneCall, RefreshCw, ChevronRight, FileText, Send, Sparkles, Filter
+  Users, Palette, Calculator, Tent, ArrowLeft, PhoneCall, RefreshCw, Send, CheckCircle2 
 } from 'lucide-react';
 
 export default function AdminPortal() {
-  const [activeTab, setActiveTab] = useState('leads'); // 'leads', 'creative', 'quotes', 'inventory'
-  
-  // State variables
+  const [activeTab, setActiveTab] = useState('leads');
   const [leads, setLeads] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [campsites, setCampsites] = useState([]);
@@ -29,7 +26,6 @@ export default function AdminPortal() {
   });
   const [calculatedQuote, setCalculatedQuote] = useState(null);
 
-  // Fetch initial data
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -53,12 +49,10 @@ export default function AdminPortal() {
     fetchData();
   }, []);
 
-  // Update lead status
   const updateLeadStatus = (leadId, newStatus) => {
     setLeads(prev => prev.map(l => l.id === leadId ? { ...l, status: newStatus } : l));
   };
 
-  // Move creative task stage
   const moveTaskStage = async (taskId, newStage) => {
     setTasks(prev => prev.map(t => t.id === taskId ? { ...t, stage: newStage } : t));
     await fetch('/api/creative', {
@@ -68,7 +62,6 @@ export default function AdminPortal() {
     });
   };
 
-  // Calculate Quote
   const handleCalculateQuote = async (e) => {
     e.preventDefault();
     try {
@@ -87,30 +80,28 @@ export default function AdminPortal() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070a0f] text-gray-100 flex flex-col">
+    <div className="min-h-screen bg-[#1B2E22] text-[#F1EAD9] flex flex-col font-sans">
       {/* Top Header */}
-      <header className="glass-panel border-b border-white/10 px-4 lg:px-8 py-4">
+      <header className="bg-[#15140F] border-b border-[#223A2C] px-4 lg:px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 transition-colors">
+            <Link href="/" className="p-2 rounded bg-[#223A2C] text-[#F1EAD9] hover:bg-[#1B2E22] transition-colors">
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-black border border-[#8cff00]/40 p-1">
-                <Image src="/emblem.png" alt="Bass Woods" width={36} height={36} className="object-contain" />
-              </div>
+              <LogoMark className="w-9 h-9" />
               <div>
-                <h1 className="font-black text-xl text-white tracking-wide flex items-center gap-2">
-                  BASSWOODS <span className="text-xs bg-[#8cff00] text-black px-2 py-0.5 rounded-full uppercase font-bold">Operations Hub</span>
+                <h1 className="font-serif text-xl font-bold text-[#F1EAD9] leading-none flex items-center gap-2">
+                  Bass Woods <span className="text-xs font-sans bg-[#C1602D] text-[#F1EAD9] px-2 py-0.5 rounded font-bold uppercase">Operations Hub</span>
                 </h1>
-                <p className="text-[11px] text-cyan-400">Startup Creative & Lead Management Portal</p>
+                <p className="text-[11px] text-[#E0A83E] mt-0.5">Startup Creative & Lead Management Portal</p>
               </div>
             </div>
           </div>
 
           <button 
             onClick={fetchData}
-            className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 px-3 py-2 rounded-xl border border-white/10 text-gray-300 cursor-pointer"
+            className="flex items-center gap-2 text-xs bg-[#223A2C] hover:bg-[#1B2E22] px-3.5 py-2 rounded border border-[#F1EAD9]/15 text-[#F1EAD9] cursor-pointer"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Refresh Data
           </button>
@@ -124,46 +115,46 @@ export default function AdminPortal() {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
           <button
             onClick={() => setActiveTab('leads')}
-            className={`px-5 py-3 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === 'leads'
-                ? 'bg-[#8cff00] text-black shadow-[0_0_20px_rgba(140,255,0,0.3)]'
-                : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                ? 'bg-[#C1602D] text-[#F1EAD9]'
+                : 'bg-[#223A2C] text-[#D9CFB6] hover:bg-[#15140F]'
             }`}
           >
-            <Users className="w-4 h-4" /> Live Website Inquiries ({leads.length})
+            <Users className="w-4 h-4" /> Live Inquiries ({leads.length})
           </button>
 
           <button
             onClick={() => setActiveTab('creative')}
-            className={`px-5 py-3 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === 'creative'
-                ? 'bg-[#8cff00] text-black shadow-[0_0_20px_rgba(140,255,0,0.3)]'
-                : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                ? 'bg-[#C1602D] text-[#F1EAD9]'
+                : 'bg-[#223A2C] text-[#D9CFB6] hover:bg-[#15140F]'
             }`}
           >
-            <Palette className="w-4 h-4" /> Creative & Asset Pipeline ({tasks.length})
+            <Palette className="w-4 h-4" /> Creative Pipeline ({tasks.length})
           </button>
 
           <button
             onClick={() => setActiveTab('quotes')}
-            className={`px-5 py-3 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === 'quotes'
-                ? 'bg-[#8cff00] text-black shadow-[0_0_20px_rgba(140,255,0,0.3)]'
-                : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                ? 'bg-[#C1602D] text-[#F1EAD9]'
+                : 'bg-[#223A2C] text-[#D9CFB6] hover:bg-[#15140F]'
             }`}
           >
-            <Calculator className="w-4 h-4" /> Instant Quote Generator
+            <Calculator className="w-4 h-4" /> Quote Generator
           </button>
 
           <button
             onClick={() => setActiveTab('inventory')}
-            className={`px-5 py-3 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === 'inventory'
-                ? 'bg-[#8cff00] text-black shadow-[0_0_20px_rgba(140,255,0,0.3)]'
-                : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                ? 'bg-[#C1602D] text-[#F1EAD9]'
+                : 'bg-[#223A2C] text-[#D9CFB6] hover:bg-[#15140F]'
             }`}
           >
-            <Tent className="w-4 h-4" /> Campsites & Stays Inventory ({campsites.length})
+            <Tent className="w-4 h-4" /> Stays Inventory ({campsites.length})
           </button>
         </div>
 
@@ -171,47 +162,46 @@ export default function AdminPortal() {
         {activeTab === 'leads' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <Users className="w-5 h-5 text-[#8cff00]" /> Website Leads & Form Entries
+              <h2 className="font-serif text-2xl font-bold text-[#F1EAD9] flex items-center gap-2">
+                <Users className="w-5 h-5 text-[#E0A83E]" /> Website Leads & Form Entries
               </h2>
-              <span className="text-xs text-gray-400">Auto-captured from frontend popup modal</span>
+              <span className="text-xs text-[#D9CFB6]">Auto-captured from frontend quote panel</span>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
               {leads.map((lead) => (
-                <div key={lead.id} className="glass-card p-6 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-white/10">
+                <div key={lead.id} className="woodcut-panel p-6 rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-[#F1EAD9]/15">
                   <div className="space-y-2 flex-1">
                     <div className="flex items-center gap-3">
-                      <h3 className="text-lg font-extrabold text-white">{lead.name}</h3>
-                      <span className={`text-[10px] uppercase font-black px-3 py-1 rounded-full border ${
-                        lead.status === 'New' ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' :
-                        lead.status === 'Quoted' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30' :
-                        'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                      <h3 className="font-serif text-lg font-bold text-[#F1EAD9]">{lead.name}</h3>
+                      <span className={`text-[10px] uppercase font-bold px-3 py-0.5 rounded border ${
+                        lead.status === 'New' ? 'bg-[#E0A83E]/20 text-[#E0A83E] border-[#E0A83E]/40' :
+                        lead.status === 'Quoted' ? 'bg-[#5C7C93]/20 text-[#5C7C93] border-[#5C7C93]/40' :
+                        'bg-[#C1602D]/20 text-[#C1602D] border-[#C1602D]/40'
                       }`}>
                         {lead.status}
                       </span>
-                      <span className="text-xs text-gray-400">{lead.timestamp}</span>
+                      <span className="text-xs text-[#D9CFB6]/60">{lead.timestamp}</span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-gray-300">
-                      <div><strong className="text-gray-400">Target Event:</strong> {lead.event}</div>
-                      <div><strong className="text-gray-400">Stay Style:</strong> {lead.stayPreference}</div>
-                      <div><strong className="text-gray-400">Guests:</strong> {lead.guests}</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-[#D9CFB6]">
+                      <div><strong className="text-[#F1EAD9]">Event:</strong> {lead.event}</div>
+                      <div><strong className="text-[#F1EAD9]">Stay:</strong> {lead.stayPreference}</div>
+                      <div><strong className="text-[#F1EAD9]">Guests:</strong> {lead.guests}</div>
                     </div>
 
                     {lead.notes && (
-                      <div className="text-xs text-purple-300 bg-purple-500/10 p-2.5 rounded-xl border border-purple-500/20">
+                      <div className="text-xs text-[#E0A83E] bg-[#15140F] p-2.5 rounded border border-[#F1EAD9]/10">
                         {lead.notes}
                       </div>
                     )}
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-auto">
-                    {/* Status Dropdown */}
                     <select
                       value={lead.status}
                       onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                      className="bg-black/60 border border-white/10 text-xs text-gray-200 rounded-xl px-3 py-2 focus:outline-none cursor-pointer w-full sm:w-auto"
+                      className="bg-[#15140F] border border-[#F1EAD9]/20 text-xs text-[#F1EAD9] rounded px-3 py-2 focus:outline-none cursor-pointer w-full sm:w-auto"
                     >
                       <option value="New">Mark New</option>
                       <option value="Contacted">Mark Contacted</option>
@@ -223,7 +213,7 @@ export default function AdminPortal() {
                       href={`https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(lead.name)},%20this%20is%20Bass%20Woods%20Camp!%20We%20received%20your%20inquiry%20for%20${encodeURIComponent(lead.event)}.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="neon-glow-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
+                      className="btn-rust px-4 py-2 rounded text-xs font-bold flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer"
                     >
                       <PhoneCall className="w-3.5 h-3.5" /> WhatsApp Lead
                     </a>
@@ -234,56 +224,42 @@ export default function AdminPortal() {
           </div>
         )}
 
-        {/* TAB 2: CREATIVE & ASSET PIPELINE KANBAN */}
+        {/* TAB 2: CREATIVE KANBAN */}
         {activeTab === 'creative' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <Palette className="w-5 h-5 text-purple-400" /> Creative & Media Approval System
-                </h2>
-                <p className="text-xs text-gray-400">Track photos, designs, quotations, and content release</p>
-              </div>
-            </div>
+            <h2 className="font-serif text-2xl font-bold text-[#F1EAD9] flex items-center gap-2">
+              <Palette className="w-5 h-5 text-[#E0A83E]" /> Creative & Media Approval System
+            </h2>
 
-            {/* Kanban Columns */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 overflow-x-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {['Reference Photos', 'Selected Design', 'Quote Approved', 'Published'].map(columnStage => (
-                <div key={columnStage} className="glass-panel p-4 rounded-3xl flex flex-col justify-start min-h-[500px]">
-                  <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
-                    <span className="text-xs font-black uppercase text-gray-200 tracking-wider">
+                <div key={columnStage} className="bg-[#223A2C] p-4 rounded-lg border border-[#F1EAD9]/15 flex flex-col justify-start min-h-[480px]">
+                  <div className="flex items-center justify-between mb-4 border-b border-[#F1EAD9]/15 pb-2">
+                    <span className="text-xs font-bold uppercase text-[#F1EAD9] tracking-wider">
                       {columnStage}
                     </span>
-                    <span className="text-xs font-bold bg-white/10 text-[#8cff00] px-2.5 py-0.5 rounded-full">
+                    <span className="text-xs font-bold bg-[#1B2E22] text-[#E0A83E] px-2.5 py-0.5 rounded">
                       {tasks.filter(t => t.stage === columnStage).length}
                     </span>
                   </div>
 
                   <div className="space-y-3 flex-1">
                     {tasks.filter(t => t.stage === columnStage).map(task => (
-                      <div key={task.id} className="glass-card p-4 rounded-2xl border border-white/10 space-y-3">
-                        {task.referencePhotos && task.referencePhotos.length > 0 && (
-                          <img 
-                            src={task.referencePhotos[0]} 
-                            alt={task.title}
-                            className="w-full h-28 object-cover rounded-xl border border-white/10"
-                          />
-                        )}
-                        <h4 className="text-sm font-extrabold text-white">{task.title}</h4>
-                        <div className="text-[11px] text-gray-400 flex items-center justify-between">
+                      <div key={task.id} className="bg-[#15140F] p-4 rounded border border-[#F1EAD9]/15 space-y-3">
+                        <h4 className="font-serif text-sm font-bold text-[#F1EAD9]">{task.title}</h4>
+                        <div className="text-[11px] text-[#D9CFB6] flex items-center justify-between">
                           <span>{task.type}</span>
-                          <strong className="text-[#8cff00]">{task.budget}</strong>
+                          <strong className="text-[#E0A83E]">{task.budget}</strong>
                         </div>
-                        <p className="text-[11px] text-gray-300 italic bg-black/40 p-2 rounded-lg">
+                        <p className="text-[11px] text-[#D9CFB6]/80 italic bg-[#1B2E22] p-2 rounded border border-[#F1EAD9]/10">
                           &quot;{task.notes}&quot;
                         </p>
 
-                        {/* Move Actions */}
-                        <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[10px]">
+                        <div className="flex items-center justify-between pt-2 border-t border-[#F1EAD9]/10 text-[10px]">
                           {columnStage !== 'Reference Photos' && (
                             <button 
                               onClick={() => moveTaskStage(task.id, 'Reference Photos')}
-                              className="text-gray-400 hover:text-white"
+                              className="text-[#D9CFB6] hover:text-[#F1EAD9]"
                             >
                               ← Back
                             </button>
@@ -295,7 +271,7 @@ export default function AdminPortal() {
                                 const currIdx = stages.indexOf(columnStage);
                                 moveTaskStage(task.id, stages[currIdx + 1]);
                               }}
-                              className="text-[#8cff00] font-bold hover:underline ml-auto"
+                              className="text-[#E0A83E] font-bold hover:underline ml-auto"
                             >
                               Advance →
                             </button>
@@ -310,120 +286,107 @@ export default function AdminPortal() {
           </div>
         )}
 
-        {/* TAB 3: INSTANT QUOTE GENERATOR */}
+        {/* TAB 3: QUOTE CALCULATOR */}
         {activeTab === 'quotes' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10">
-              <h2 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                <Calculator className="w-5 h-5 text-cyan-400" /> Instant Custom Package Estimator
+            <div className="bg-[#223A2C] p-6 sm:p-8 rounded-lg border border-[#F1EAD9]/15">
+              <h2 className="font-serif text-2xl font-bold text-[#F1EAD9] mb-4 flex items-center gap-2">
+                <Calculator className="w-5 h-5 text-[#E0A83E]" /> Custom Package Estimator
               </h2>
-              <p className="text-xs text-gray-400 mb-6">Generate itemized quotes for group travelers & campsites</p>
 
               <form onSubmit={handleCalculateQuote} className="space-y-4">
                 <div>
-                  <label className="text-xs font-semibold text-gray-300 block mb-1">Client / Group Name</label>
+                  <label className="text-xs font-semibold text-[#D9CFB6] block mb-1">Client / Group Name</label>
                   <input 
                     type="text" 
                     required
                     placeholder="e.g. Ananya Sharma Group"
                     value={quoteInput.clientName}
                     onChange={(e) => setQuoteInput({ ...quoteInput, clientName: e.target.value })}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none"
+                    className="w-full bg-[#15140F] border border-[#F1EAD9]/20 rounded px-4 py-2 text-sm text-[#F1EAD9] focus:outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-semibold text-gray-300 block mb-1">Number of Guests</label>
+                    <label className="text-xs font-semibold text-[#D9CFB6] block mb-1">Guests</label>
                     <input 
                       type="number" 
                       min="1"
                       value={quoteInput.guests}
                       onChange={(e) => setQuoteInput({ ...quoteInput, guests: e.target.value })}
-                      className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none"
+                      className="w-full bg-[#15140F] border border-[#F1EAD9]/20 rounded px-4 py-2 text-sm text-[#F1EAD9] focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-gray-300 block mb-1">Duration (Nights)</label>
+                    <label className="text-xs font-semibold text-[#D9CFB6] block mb-1">Nights</label>
                     <input 
                       type="number" 
                       min="1"
                       value={quoteInput.nights}
                       onChange={(e) => setQuoteInput({ ...quoteInput, nights: e.target.value })}
-                      className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none"
+                      className="w-full bg-[#15140F] border border-[#F1EAD9]/20 rounded px-4 py-2 text-sm text-[#F1EAD9] focus:outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-gray-300 block mb-1">Stay Rate Per Night (₹)</label>
+                  <label className="text-xs font-semibold text-[#D9CFB6] block mb-1">Stay Rate Per Night (₹)</label>
                   <select
                     value={quoteInput.stayRate}
                     onChange={(e) => setQuoteInput({ ...quoteInput, stayRate: Number(e.target.value) })}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none cursor-pointer"
+                    className="w-full bg-[#15140F] border border-[#F1EAD9]/20 rounded px-4 py-2 text-sm text-[#F1EAD9] focus:outline-none cursor-pointer"
                   >
                     <option value={700}>Budget Alpine Tent (₹700/night)</option>
                     <option value={1200}>Standard Glamping Tent (₹1,200/night)</option>
                     <option value={1950}>Authentic Eco-Cottage (₹1,950/night)</option>
                     <option value={2200}>Luxury Geodesic Dome (₹2,200/night)</option>
-                    <option value={2500}>Cloudland Villa (₹2,500/night)</option>
                   </select>
                 </div>
 
-                {/* Add-ons */}
                 <div className="space-y-2 pt-2">
-                  <label className="text-xs font-semibold text-gray-300 block">Package Add-Ons</label>
+                  <label className="text-xs font-semibold text-[#D9CFB6] block">Package Add-Ons</label>
                   
-                  <label className="flex items-center gap-3 bg-black/40 p-3 rounded-xl border border-white/10 text-xs text-gray-300 cursor-pointer">
+                  <label className="flex items-center gap-3 bg-[#15140F] p-3 rounded border border-[#F1EAD9]/10 text-xs text-[#D9CFB6] cursor-pointer">
                     <input 
                       type="checkbox"
                       checked={quoteInput.includeTransport}
                       onChange={(e) => setQuoteInput({ ...quoteInput, includeTransport: e.target.checked })}
-                      className="accent-[#8cff00]"
+                      className="accent-[#C1602D]"
                     />
-                    Guwahati SUV/Shuttle Airport Convoy (+₹2,500/head)
+                    Guwahati SUV Airport Convoy (+₹2,500/head)
                   </label>
 
-                  <label className="flex items-center gap-3 bg-black/40 p-3 rounded-xl border border-white/10 text-xs text-gray-300 cursor-pointer">
+                  <label className="flex items-center gap-3 bg-[#15140F] p-3 rounded border border-[#F1EAD9]/10 text-xs text-[#D9CFB6] cursor-pointer">
                     <input 
                       type="checkbox"
                       checked={quoteInput.includePasses}
                       onChange={(e) => setQuoteInput({ ...quoteInput, includePasses: e.target.checked })}
-                      className="accent-[#8cff00]"
+                      className="accent-[#C1602D]"
                     />
                     Official VIP Festival Season Pass (+₹3,500/head)
-                  </label>
-
-                  <label className="flex items-center gap-3 bg-black/40 p-3 rounded-xl border border-white/10 text-xs text-gray-300 cursor-pointer">
-                    <input 
-                      type="checkbox"
-                      checked={quoteInput.includeMeals}
-                      onChange={(e) => setQuoteInput({ ...quoteInput, includeMeals: e.target.checked })}
-                      className="accent-[#8cff00]"
-                    />
-                    Organic Tribal Meals & BBQ (+₹600/day/head)
                   </label>
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full neon-glow-btn py-3 rounded-2xl text-sm font-extrabold flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full btn-rust py-3 rounded text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4" /> Calculate Formal Quote
+                  Calculate Formal Quote
                 </button>
               </form>
             </div>
 
-            {/* Calculated Quote Output Panel */}
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[#8cff00]/40 flex flex-col justify-between">
+            {/* Calculated Quote Sheet */}
+            <div className="cream-paper-card p-6 sm:p-8 rounded-lg border-2 border-[#15140F] flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-                  <span className="text-xs font-black uppercase tracking-widest text-[#8cff00]">
-                    Bass Woods Quotation Sheet
+                <div className="flex items-center justify-between border-b border-[#15140F]/20 pb-4 mb-6">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#C1602D]">
+                    Quotation Sheet
                   </span>
                   {calculatedQuote && (
-                    <span className="text-xs text-cyan-400 font-mono font-bold">
+                    <span className="text-xs text-[#15140F] font-mono font-bold">
                       {calculatedQuote.quoteId}
                     </span>
                   )}
@@ -432,90 +395,78 @@ export default function AdminPortal() {
                 {calculatedQuote ? (
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-2xl font-black text-white">{calculatedQuote.clientName}</h3>
-                      <p className="text-xs text-gray-400">{calculatedQuote.eventName} • {calculatedQuote.guests} Guests • {calculatedQuote.nights} Nights</p>
+                      <h3 className="font-serif text-2xl font-bold text-[#15140F]">{calculatedQuote.clientName}</h3>
+                      <p className="text-xs text-[#15140F]/70">{calculatedQuote.eventName} • {calculatedQuote.guests} Guests • {calculatedQuote.nights} Nights</p>
                     </div>
 
-                    <div className="space-y-2 bg-black/50 p-4 rounded-2xl border border-white/10 text-xs">
-                      <div className="flex justify-between text-gray-300">
+                    <div className="space-y-2 bg-[#1B2E22] text-[#F1EAD9] p-4 rounded text-xs">
+                      <div className="flex justify-between">
                         <span>Stay Accommodation Total:</span>
                         <strong>₹{calculatedQuote.breakdown.totalStay.toLocaleString()}</strong>
                       </div>
-                      <div className="flex justify-between text-gray-300">
+                      <div className="flex justify-between">
                         <span>Transport & Convoys:</span>
                         <strong>₹{calculatedQuote.breakdown.totalTransport.toLocaleString()}</strong>
                       </div>
-                      <div className="flex justify-between text-gray-300">
+                      <div className="flex justify-between">
                         <span>Festival Passes:</span>
                         <strong>₹{calculatedQuote.breakdown.totalPasses.toLocaleString()}</strong>
                       </div>
-                      <div className="flex justify-between text-gray-300">
-                        <span>Meals & Brews:</span>
-                        <strong>₹{calculatedQuote.breakdown.totalMeals.toLocaleString()}</strong>
-                      </div>
-                      <div className="flex justify-between text-cyan-300 pt-2 border-t border-white/10">
+                      <div className="flex justify-between text-[#E0A83E] pt-2 border-t border-[#F1EAD9]/15">
                         <span>5% Concierge & Setup Fee:</span>
                         <strong>₹{calculatedQuote.breakdown.serviceFee.toLocaleString()}</strong>
                       </div>
                     </div>
 
-                    <div className="bg-[#8cff00]/10 border border-[#8cff00]/40 p-4 rounded-2xl flex items-center justify-between">
+                    <div className="bg-[#E0A83E]/20 border border-[#E0A83E] p-4 rounded flex items-center justify-between">
                       <div>
-                        <div className="text-[10px] uppercase font-bold text-[#8cff00]">Grand Total</div>
-                        <div className="text-2xl font-black text-white">₹{calculatedQuote.breakdown.grandTotal.toLocaleString()}</div>
+                        <div className="text-[10px] uppercase font-bold text-[#15140F]">Grand Total</div>
+                        <div className="text-2xl font-black text-[#15140F]">₹{calculatedQuote.breakdown.grandTotal.toLocaleString()}</div>
                       </div>
                       <div className="text-right">
-                        <div className="text-[10px] uppercase font-bold text-gray-400">Per Head</div>
-                        <div className="text-lg font-bold text-cyan-300">₹{calculatedQuote.perHeadCost.toLocaleString()}</div>
+                        <div className="text-[10px] uppercase font-bold text-[#15140F]/70">Per Head</div>
+                        <div className="text-lg font-bold text-[#C1602D]">₹{calculatedQuote.perHeadCost.toLocaleString()}</div>
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-16 text-gray-400 text-sm">
-                    Fill in traveler parameters on the left to compute instant itemized costs.
+                  <div className="text-center py-16 text-[#15140F]/60 text-sm font-medium">
+                    Fill in parameters on the left to compute costs.
                   </div>
                 )}
               </div>
 
               {calculatedQuote && (
                 <button
-                  onClick={() => alert(`Quote ${calculatedQuote.quoteId} formatted for WhatsApp!`)}
-                  className="neon-glow-btn py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 mt-6 cursor-pointer"
+                  onClick={() => alert(`Quote ${calculatedQuote.quoteId} copied!`)}
+                  className="btn-rust py-2.5 rounded text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 mt-6 cursor-pointer"
                 >
-                  <Send className="w-4 h-4" /> Copy Quote Text for WhatsApp
+                  <Send className="w-4 h-4" /> Copy Quote for WhatsApp
                 </button>
               )}
             </div>
           </div>
         )}
 
-        {/* TAB 4: INVENTORY & CAMPSITES */}
+        {/* TAB 4: INVENTORY */}
         {activeTab === 'inventory' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <Tent className="w-5 h-5 text-[#8cff00]" /> Campsite & Stay Slots Manager
-              </h2>
-              <span className="text-xs text-gray-400">Range: ₹500 to ₹2,500+</span>
-            </div>
+            <h2 className="font-serif text-2xl font-bold text-[#F1EAD9] flex items-center gap-2">
+              <Tent className="w-5 h-5 text-[#E0A83E]" /> Campsite & Stay Slots Manager
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {campsites.map(camp => (
-                <div key={camp.id} className="glass-card p-5 rounded-3xl border border-white/10 space-y-3">
+                <div key={camp.id} className="woodcut-panel p-5 rounded-lg border border-[#F1EAD9]/15 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-cyan-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                    <span className="text-xs font-bold text-[#E0A83E] bg-[#15140F] px-3 py-1 rounded">
                       {camp.category}
                     </span>
-                    <strong className="text-base text-[#8cff00] font-black">{camp.priceLabel}</strong>
+                    <strong className="text-base text-[#F1EAD9] font-serif font-bold">{camp.priceLabel}</strong>
                   </div>
 
-                  <h3 className="text-base font-extrabold text-white">{camp.name}</h3>
-                  <div className="text-xs text-gray-400">{camp.location} • {camp.availableSlots} Slots Available</div>
-
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-purple-300 font-medium">Vibe: {camp.vibe}</span>
-                    <span className="text-emerald-400 font-bold">Active Listing</span>
-                  </div>
+                  <h3 className="font-serif text-base font-bold text-[#F1EAD9]">{camp.name}</h3>
+                  <div className="text-xs text-[#D9CFB6]">{camp.location} • {camp.availableSlots} Slots Available</div>
                 </div>
               ))}
             </div>
