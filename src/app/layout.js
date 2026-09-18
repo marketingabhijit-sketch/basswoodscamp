@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/icon.png" />
       </head>
-      <body className="bg-[#1B2E22] text-[#F1EAD9] font-sans antialiased selection:bg-[#C1602D] selection:text-[#F1EAD9]">
+      <body className="bg-[#F6F1E7] text-[#1B2E22] font-sans antialiased selection:bg-[#C1602D] selection:text-[#F6F1E7]">
         {children}
       </body>
     </html>

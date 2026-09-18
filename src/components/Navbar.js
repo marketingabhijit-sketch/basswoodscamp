@@ -5,23 +5,26 @@ import { Tent, Calendar, Sparkles, LayoutDashboard, PhoneCall } from 'lucide-rea
 
 export default function Navbar({ onOpenPopup }) {
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#1B2E22]/95 border-b border-[#F1EAD9]/15 backdrop-blur-md px-4 lg:px-8 py-3.5">
+    <header className="sticky top-0 z-40 w-full bg-[#1B2E22] text-[#F6F1E7] border-b border-[#F6F1E7]/15 shadow-md px-4 lg:px-8 py-3.5">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
+        
         {/* Brand Logo & Title */}
         <Link href="/" className="flex items-center gap-3 group">
-          <LogoMark className="w-10 h-10 group-hover:scale-105 transition-transform" />
+          <div className="bg-[#223A2C] p-1.5 rounded-lg border border-[#F6F1E7]/20 group-hover:border-[#E0A83E] transition-colors">
+            <LogoMark className="w-8 h-8" />
+          </div>
           <div className="flex flex-col">
-            <span className="font-serif text-2xl font-bold tracking-tight text-[#F1EAD9] leading-none">
+            <span className="font-serif text-2xl font-bold tracking-tight text-[#F6F1E7] leading-none">
               Bass Woods
             </span>
-            <span className="text-[11px] uppercase tracking-widest text-[#E0A83E] font-medium mt-0.5">
+            <span className="text-[10px] uppercase tracking-widest text-[#E0A83E] font-semibold mt-0.5">
               Northeast Festival Travel
             </span>
           </div>
         </Link>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#D9CFB6]">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#EDE4D3]">
           <a href="#events-2026" className="hover:text-[#E0A83E] transition-colors flex items-center gap-1.5">
             <Calendar className="w-4 h-4 text-[#E0A83E]" /> 2026 Festivals
           </a>
@@ -33,7 +36,7 @@ export default function Navbar({ onOpenPopup }) {
           </a>
           <Link 
             href="/admin" 
-            className="hover:text-[#F1EAD9] transition-colors flex items-center gap-1.5 text-xs bg-[#223A2C] px-3.5 py-1.5 rounded-md border border-[#F1EAD9]/15 hover:border-[#E0A83E]"
+            className="hover:text-[#F6F1E7] transition-colors flex items-center gap-1.5 text-xs bg-[#223A2C] px-3.5 py-1.5 rounded-md border border-[#F6F1E7]/15 hover:border-[#E0A83E]"
           >
             <LayoutDashboard className="w-3.5 h-3.5 text-[#E0A83E]" /> Admin Hub
           </Link>
@@ -43,7 +46,7 @@ export default function Navbar({ onOpenPopup }) {
         <div className="flex items-center gap-3">
           <button 
             onClick={onOpenPopup}
-            className="btn-rust px-4 py-2 rounded-md text-xs md:text-sm flex items-center gap-2 cursor-pointer font-semibold"
+            className="btn-rust-light px-4 py-2 rounded-md text-xs md:text-sm flex items-center gap-2 cursor-pointer"
           >
             Get Custom Quote
           </button>
@@ -52,12 +55,13 @@ export default function Navbar({ onOpenPopup }) {
             href="https://wa.me/919876543210?text=Hi%20Bass%20Woods!%20I'm%20interested%20in%20Northeast%202026%20festival%20campsites." 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center justify-center w-9 h-9 rounded-md bg-[#223A2C] text-[#E0A83E] border border-[#F1EAD9]/15 hover:border-[#E0A83E] transition-all"
+            className="hidden sm:flex items-center justify-center w-9 h-9 rounded-md bg-[#223A2C] text-[#E0A83E] border border-[#F6F1E7]/15 hover:border-[#E0A83E] transition-all"
             title="WhatsApp Consultation"
           >
             <PhoneCall className="w-4 h-4" />
           </a>
         </div>
+
       </div>
     </header>
   );

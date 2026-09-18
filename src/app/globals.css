@@ -2,20 +2,21 @@
 
 @layer base {
   :root {
-    --forest-deep: #1B2E22;
+    --sand-light: #F6F1E7;
+    --sand-card: #EDE4D3;
+    --forest-dark: #1B2E22;
     --forest-panel: #223A2C;
-    --ink: #15140F;
+    --ink-text: #1B2E22;
+    --ink-muted: #3D5244;
     --rust: #C1602D;
     --rust-hover: #A94F22;
     --mustard: #E0A83E;
-    --dusk-blue: #5C7C93;
-    --cream: #F1EAD9;
-    --cream-dim: #D9CFB6;
+    --slate-blue: #5C7C93;
   }
 
   body {
-    background-color: var(--forest-deep);
-    color: var(--cream);
+    background-color: var(--sand-light);
+    color: var(--ink-text);
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
@@ -26,72 +27,84 @@
   }
 }
 
-/* Paper Grain Texture Overlay */
-.paper-texture {
-  background-image: radial-gradient(rgba(241, 234, 217, 0.04) 1px, transparent 0);
+/* Warm Paper Grain Texture for Light Background */
+.paper-grain-light {
+  background-color: #F6F1E7;
+  background-image: radial-gradient(rgba(27, 46, 34, 0.05) 1px, transparent 0);
   background-size: 16px 16px;
 }
 
-.woodcut-panel {
-  background-color: #223A2C;
-  border: 1px solid rgba(241, 234, 217, 0.15);
-  box-shadow: 4px 4px 0px rgba(21, 20, 15, 0.4);
+/* Light Cream Card Surface */
+.cream-card {
+  background-color: #EDE4D3;
+  color: #1B2E22;
+  border: 1px solid rgba(27, 46, 34, 0.15);
+  box-shadow: 3px 3px 0px rgba(27, 46, 34, 0.15);
 }
 
-.cream-paper-card {
-  background-color: #F1EAD9;
-  color: #15140F;
-  box-shadow: 4px 4px 0px #15140F;
+.cream-card:hover {
+  border-color: #C1602D;
+  box-shadow: 4px 4px 0px rgba(193, 96, 45, 0.3);
+  transform: translateY(-2px);
 }
 
-.btn-rust {
-  background-color: #C1602D;
-  color: #F1EAD9;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  box-shadow: 3px 3px 0px #15140F;
+/* Dark Forest Bookend Panels (Nav, Footer, Quote Form) */
+.dark-forest-panel {
+  background-color: #1B2E22;
+  color: #F6F1E7;
 }
 
-.btn-rust:hover {
-  background-color: #A94F22;
-  transform: translateY(-1px);
-  box-shadow: 4px 4px 0px #15140F;
-}
-
-.btn-mustard {
-  background-color: #E0A83E;
-  color: #15140F;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  box-shadow: 3px 3px 0px #15140F;
-}
-
-.btn-mustard:hover {
-  background-color: #d1992e;
-  transform: translateY(-1px);
-  box-shadow: 4px 4px 0px #15140F;
-}
-
-/* Ticket Stub Perforation Edge */
-.ticket-stub {
+/* Ticket Stub Styling */
+.ticket-stub-light {
   position: relative;
-  background-color: #F1EAD9;
-  color: #15140F;
-  border-radius: 4px;
+  background-color: #EDE4D3;
+  color: #1B2E22;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px rgba(27, 46, 34, 0.2);
 }
 
-.ticket-stub::after {
+.ticket-stub-light::after {
   content: '';
   position: absolute;
   bottom: 32px;
   left: 0;
   right: 0;
-  border-bottom: 2px dashed rgba(21, 20, 15, 0.25);
+  border-bottom: 2px dashed rgba(27, 46, 34, 0.25);
 }
 
-/* Focus States */
+/* Primary Rust Button */
+.btn-rust-light {
+  background-color: #C1602D;
+  color: #F6F1E7;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0px #1B2E22;
+}
+
+.btn-rust-light:hover {
+  background-color: #A94F22;
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0px #1B2E22;
+}
+
+/* Secondary Mustard Button */
+.btn-mustard-light {
+  background-color: #E0A83E;
+  color: #1B2E22;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0px #1B2E22;
+}
+
+.btn-mustard-light:hover {
+  background-color: #d1952e;
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0px #1B2E22;
+}
+
+/* Accessibility Focus Rings */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid #E0A83E !important;
+  outline: 2px solid #C1602D !important;
   outline-offset: 2px !important;
 }
 
@@ -100,10 +113,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1B2E22;
+  background: #F6F1E7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #223A2C;
+  background: #EDE4D3;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
