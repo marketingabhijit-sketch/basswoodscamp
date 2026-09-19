@@ -170,8 +170,8 @@ export default function LeadPopupModal({ isOpen, onClose, selectedEvent, selecte
               </button>
             </form>
           )}
-        </div>
 
+        </div>
       </div>
     </div>
   );
