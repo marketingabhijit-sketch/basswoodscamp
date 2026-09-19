@@ -2,114 +2,69 @@
 
 @layer base {
   :root {
-    --canvas-parchment: #F4EFE6;
-    --card-ochre: #E9DFCE;
-    --card-hover: #E1D5C1;
-    --ink-botanical: #14241B;
-    --ink-moss: #384D3E;
-    --terracotta-fire: #C85A28;
-    --terracotta-hover: #B04B1F;
-    --harvest-gold: #DB9E30;
-    --mist-slate: #4A6D7C;
+    --bg-dark-forest: #14251B;
+    --bg-card-cream: #F5EFE6;
+    --bg-card-cream-dark: #EDE7D9;
+    --text-cream: #F5EFE6;
+    --text-dark-forest: #14251B;
+    --accent-terracotta: #C85A28;
+    --accent-terracotta-hover: #B04B1F;
+    --accent-gold: #E0A83E;
+    --border-cream: rgba(245, 239, 230, 0.15);
   }
 
   body {
-    background-color: var(--canvas-parchment);
-    color: var(--ink-botanical);
-    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-dark-forest);
+    color: var(--text-cream);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     overflow-x: hidden;
   }
-
-  h1, h2, h3, .font-serif-headline {
-    font-family: var(--font-fraunces), Georgia, serif;
-    letter-spacing: -0.015em;
-  }
 }
 
-/* Editorial Paper Grain & Texture */
-.paper-canvas {
-  background-color: #F4EFE6;
-  background-image: 
-    radial-gradient(rgba(20, 36, 27, 0.04) 1px, transparent 0),
-    linear-gradient(to bottom, rgba(244, 239, 230, 0.6), rgba(244, 239, 230, 0.95));
-  background-size: 16px 16px, 100% 100%;
+/* Custom Color Grade Utility Classes */
+.bg-dark-forest {
+  background-color: #14251B;
 }
 
-/* Boutique Card Surfaces */
-.boutique-card {
-  background-color: #E9DFCE;
-  color: #14241B;
-  border: 1px solid rgba(20, 36, 27, 0.15);
-  box-shadow: 4px 4px 0px rgba(20, 36, 27, 0.12);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+.bg-card-cream {
+  background-color: #F5EFE6;
+  color: #14251B;
 }
 
-.boutique-card:hover {
-  background-color: #E1D5C1;
-  border-color: #C85A28;
-  box-shadow: 6px 6px 0px rgba(200, 90, 40, 0.25);
-  transform: translateY(-3px);
+.card-cream-container {
+  background-color: #F5EFE6;
+  color: #14251B;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark Botanical Bookend Frames (Navbar, Footer, Quote Form) */
-.dark-botanical-frame {
-  background-color: #14241B;
-  color: #F4EFE6;
-  border-color: rgba(219, 158, 48, 0.2);
+.card-dark-forest {
+  background-color: #1A3023;
+  color: #F5EFE6;
+  border: 1px solid rgba(245, 239, 230, 0.12);
+  border-radius: 1rem;
 }
 
-/* Vintage Ticket Stub Styling */
-.ticket-stub-editorial {
-  position: relative;
-  background-color: #E9DFCE;
-  color: #14241B;
-  border-radius: 6px;
-  box-shadow: 4px 4px 0px rgba(20, 36, 27, 0.15);
-  transition: all 0.25s ease;
-}
-
-.ticket-stub-editorial::after {
-  content: '';
-  position: absolute;
-  bottom: 34px;
-  left: 0;
-  right: 0;
-  border-bottom: 2px dashed rgba(20, 36, 27, 0.25);
-}
-
-/* Designer Button Styles */
 .btn-terracotta {
   background-color: #C85A28;
-  color: #F4EFE6;
+  color: #F5EFE6;
   font-weight: 700;
   transition: all 0.2s ease;
-  box-shadow: 3px 3px 0px #14241B;
+  border-radius: 0.75rem;
 }
 
 .btn-terracotta:hover {
   background-color: #B04B1F;
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px #14241B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(200, 90, 40, 0.4);
 }
 
-.btn-harvest {
-  background-color: #DB9E30;
-  color: #14241B;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  box-shadow: 3px 3px 0px #14241B;
+.btn-[#C85A28] {
+  background-color: #C85A28;
 }
 
-.btn-harvest:hover {
-  background-color: #c48c26;
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px #14241B;
-}
-
-/* Accessibility Focus Ring */
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid #C85A28 !important;
-  outline-offset: 2px !important;
+.text-terracotta {
+  color: #C85A28;
 }
 
 /* Custom Scrollbar */
@@ -117,10 +72,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4EFE6;
+  background: #14251B;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E9DFCE;
+  background: #233D2D;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
